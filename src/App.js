@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import Form from "./Form";
 
-
- const App = () => {
+const App = () => {
   return (
-    <div className="App">
-      React Isssue Tracker
+    <div className="container">
+      <h3>
+        <strong>React Issue Tracker</strong>
+      </h3>
+      <Form />
     </div>
   );
-}
-
+};
 export default App;
