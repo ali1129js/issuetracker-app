@@ -12,7 +12,7 @@ class App extends Component {
         status: "open",
       },
     ],
-    isOpen: true,
+    isOpen: false,
   };
 
   handleToggle = () => {
@@ -26,6 +26,9 @@ class App extends Component {
         <h3>
           <strong>React Issue Tracker</strong>
         </h3>
+        <button className="btn btn-warning" onClick={this.handleToggle}>
+          Add New Issue
+        </button>
         <NewIssue show={this.state.isOpen} handleToggle={this.handleToggle} />
         <Grid />
       </div>
