@@ -10,6 +10,18 @@ class App extends Component {
         severity: "high",
         assigned: "name",
         status: "open",
+        desc: "Fix the trhing",
+        due: "tomtot",
+        ts: "timestamp here",
+      },
+      {
+        id: "3424sf2354sefsdrw2412342wersderfsf",
+        severity: "high",
+        assigned: "name",
+        status: "open",
+        desc: "bl blblbl lbleresde lbglglgf ",
+        due: "tomtot",
+        ts: "timestamp here",
       },
     ],
     isOpen: false,
@@ -21,6 +33,7 @@ class App extends Component {
     });
   };
   render() {
+    console.log(this.state.issues);
     return (
       <div className="container">
         <h3>
@@ -30,7 +43,7 @@ class App extends Component {
           Add New Issue
         </button>
         <NewIssue show={this.state.isOpen} handleToggle={this.handleToggle} />
-        <Grid />
+        <Grid issues={this.state.issues} />
       </div>
     );
   }
