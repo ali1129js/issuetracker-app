@@ -1,5 +1,5 @@
 import React from "react";
-
+import { uuid } from "uuidv4";
 const Grid = ({ issues }) => (
   <div className="grid">
     <div className="row">
@@ -12,7 +12,7 @@ const Grid = ({ issues }) => (
       <div className="col">Due</div>
     </div>
     {issues.map((issue) => (
-      <div className="row">
+      <div key={uuid()} className="row">
         <div className="col">{issue.status}</div>
         <div className="col">{issue.id}</div>
         <div className="col-6">{issue.desc}</div>

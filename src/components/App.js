@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NewIssue from "./NewIssue";
+import ReNewIss from "./ReNewIss";
 import Grid from "./Grid";
 
 class App extends Component {
@@ -9,16 +9,16 @@ class App extends Component {
         id: "uuidv4",
         severity: "high",
         assigned: "name",
-        status: "open",
+        status: "Closed",
         desc: "Fix the trhing",
         due: "tomtot",
         ts: "timestamp here",
       },
       {
-        id: "3424sf2354sefsdrw2412342wersderfsf",
+        id: "123456",
         severity: "high",
         assigned: "name",
-        status: "open",
+        status: "Fixed",
         desc: "bl blblbl lbleresde lbglglgf ",
         due: "tomtot",
         ts: "timestamp here",
@@ -32,8 +32,11 @@ class App extends Component {
       isOpen: !this.state.isOpen,
     });
   };
+
+  handleSubmit = (newIssue) => {
+    this.setState({ issues: [...this.state.issues, newIssue] });
+  };
   render() {
-    console.log(this.state.issues);
     return (
       <div className="container">
         <h3>
@@ -42,7 +45,7 @@ class App extends Component {
         <button className="btn btn-warning" onClick={this.handleToggle}>
           Add New Issue
         </button>
-        <NewIssue show={this.state.isOpen} handleToggle={this.handleToggle} />
+        <ReNewIss show={this.state.isOpen} handleSubmit={this.handleSubmit} />
         <Grid issues={this.state.issues} />
       </div>
     );
