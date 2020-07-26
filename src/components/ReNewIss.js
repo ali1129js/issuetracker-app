@@ -46,7 +46,7 @@ class ReNewIss extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let newIssue = {
-      ts: new Date().toDateString(),
+      ts: new Date().toLocaleTimeString(),
       desc: this.state.desc,
       assigned: this.state.assigned,
       severity: this.state.severity,

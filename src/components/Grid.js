@@ -1,9 +1,11 @@
 import React from "react";
 import { uuid } from "uuidv4";
+import "./grid.css";
+
 const Grid = ({ issues }) => (
   <div className="grid">
-    <div className="row">
-      <div className="col">Status</div>
+    <div className="row bg-light">
+      <div className="col ">Status</div>
       <div className="col">Id</div>
       <div className="col-6">Description</div>
       <div className="col">Severity</div>

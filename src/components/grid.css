@@ -1,0 +1,11 @@
+.grid {
+  border: 2px solid #747d8c;
+  background-color: #ced6e0;
+  padding: 1em;
+}
+.col {
+  border: 1px solid white;
+}
+.col-6 {
+  border: 1px solid white;
+}
