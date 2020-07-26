@@ -136,6 +136,12 @@ class ReNewIss extends Component {
             className="btn btn-danger"
             onClick={this.handleSubmit}
           />
+          <button
+            className="btn btn-outline-success ml-3"
+            onClick={this.props.handleToggle}
+          >
+            Close
+          </button>
         </form>
       </div>
     );

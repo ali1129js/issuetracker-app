@@ -58,10 +58,17 @@ class App extends Component {
         <h3>
           <strong>React Issue Tracker</strong>
         </h3>
-        <button className="btn btn-outline-success" onClick={this.handleToggle}>
+        <button
+          className="btn btn-outline-success mb-2"
+          onClick={this.handleToggle}
+        >
           Open a New Issue
         </button>
-        <ReNewIss show={this.state.isOpen} handleSubmit={this.handleSubmit} />
+        <ReNewIss
+          show={this.state.isOpen}
+          handleSubmit={this.handleSubmit}
+          handleToggle={this.handleToggle}
+        />
         <Grid issues={this.state.issues} getBackground={this.getBackground} />
       </div>
     );
