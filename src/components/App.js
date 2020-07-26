@@ -7,21 +7,21 @@ class App extends Component {
     issues: [
       {
         id: "uuidv4",
-        severity: "high",
+        severity: "High",
         assigned: "name",
         status: "Closed",
         desc: "Fix the trhing",
         due: "tomtot",
-        ts: "timestamp here",
+        ts: "timestamp ",
       },
       {
         id: "123456",
-        severity: "high",
+        severity: "High",
         assigned: "name",
         status: "Fixed",
         desc: "bl blblbl lbleresde lbglglgf ",
         due: "tomtot",
-        ts: "timestamp here",
+        ts: "timestamp ",
       },
     ],
     isOpen: false,
@@ -36,14 +36,15 @@ class App extends Component {
   handleSubmit = (newIssue) => {
     this.setState({ issues: [...this.state.issues, newIssue] });
   };
+
   render() {
     return (
       <div className="container">
         <h3>
           <strong>React Issue Tracker</strong>
         </h3>
-        <button className="btn btn-warning" onClick={this.handleToggle}>
-          Add New Issue
+        <button className="btn btn-outline-success" onClick={this.handleToggle}>
+          Open a New Issue
         </button>
         <ReNewIss show={this.state.isOpen} handleSubmit={this.handleSubmit} />
         <Grid issues={this.state.issues} />

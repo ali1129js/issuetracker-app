@@ -7,6 +7,9 @@ class ReNewIss extends Component {
     assigned: "",
     status: "",
     desc: "",
+    low: false,
+    med: false,
+    high: false,
   };
 
   handleChange = (e) => {
@@ -15,9 +18,31 @@ class ReNewIss extends Component {
   handleChange2 = (e) => {
     this.setState({ assigned: e.target.value });
   };
-  handleClick = (e) => {
-    this.setState({ severity: e.target.value });
+  handleClickH = (e) => {
+    this.setState({
+      severity: e.target.value,
+      high: true,
+      med: false,
+      low: false,
+    });
   };
+  handleClickM = (e) => {
+    this.setState({
+      severity: e.target.value,
+      med: true,
+      high: false,
+      low: false,
+    });
+  };
+  handleClickL = (e) => {
+    this.setState({
+      severity: e.target.value,
+      low: true,
+      high: false,
+      med: false,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     let newIssue = {
@@ -48,26 +73,39 @@ class ReNewIss extends Component {
               name="desc"
               onChange={this.handleChange}
               value={this.state.desc}
+              required
             />
           </div>
           <div className="input-group mb-3">
             <label className="input-group-text">Severity</label>
             <input
               type="button"
-              className="btn btn-outline-danger ml-3"
-              onClick={this.handleClick}
+              className={
+                this.state.high
+                  ? "btn btn-danger ml-3"
+                  : "btn btn-outline-danger ml-3"
+              }
+              onClick={this.handleClickH}
               value={"High"}
             />
             <input
               type="button"
-              className="btn btn-outline-warning ml-3"
-              onClick={this.handleClick}
+              className={
+                this.state.med
+                  ? "btn btn-warning ml-3"
+                  : "btn btn-outline-warning ml-3"
+              }
+              onClick={this.handleClickM}
               value={"Medium"}
             />
             <input
               type="button"
-              className="btn btn-outline-info ml-3"
-              onClick={this.handleClick}
+              className={
+                this.state.low
+                  ? "btn btn-info ml-3"
+                  : "btn btn-outline-info ml-3"
+              }
+              onClick={this.handleClickL}
               value={"Low"}
             />
           </div>
