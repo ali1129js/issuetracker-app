@@ -54,6 +54,15 @@ class ReNewIss extends Component {
       status: "Open",
     };
     this.props.handleSubmit(newIssue);
+    this.setState({
+      severity: null,
+      assigned: "",
+      status: "",
+      desc: "",
+      low: false,
+      med: false,
+      high: false,
+    });
   };
   render() {
     if (!this.props.show) {
@@ -73,7 +82,6 @@ class ReNewIss extends Component {
               name="desc"
               onChange={this.handleChange}
               value={this.state.desc}
-              required
             />
           </div>
           <div className="input-group mb-3">

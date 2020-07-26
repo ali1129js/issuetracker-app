@@ -6,6 +6,15 @@
 .col {
   border: 1px solid white;
 }
-.col-6 {
+.col-4 {
   border: 1px solid white;
+}
+.col-2 {
+  border: 1px solid white;
+}
+.getBackground {
+  padding: 2px;
+  font-size: small;
+  font-weight: bolder;
+  text-align: center;
 }

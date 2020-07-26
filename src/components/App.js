@@ -10,17 +10,17 @@ class App extends Component {
         severity: "High",
         assigned: "name",
         status: "Closed",
-        desc: "Fix the trhing",
-        due: "tomtot",
-        ts: "timestamp ",
+        desc: "News API only works in development mode",
+        due: "Yesterday",
+        ts: "Last week ",
       },
       {
         id: "123456",
         severity: "High",
         assigned: "name",
         status: "Fixed",
-        desc: "bl blblbl lbleresde lbglglgf ",
-        due: "tomtot",
+        desc: ".............",
+        due: "Never",
         ts: "timestamp ",
       },
     ],
@@ -36,7 +36,22 @@ class App extends Component {
   handleSubmit = (newIssue) => {
     this.setState({ issues: [...this.state.issues, newIssue] });
   };
-
+  //testing
+  getBackground = (item) => {
+    if (item === "High") {
+      return "bg-danger";
+    } else if (item === "Medium") {
+      return "bg-warning";
+    } else if (item === "Low") {
+      return "bg-info";
+    } else if (item === "Fixed") {
+      return "bg-success";
+    } else if (item === "Open") {
+      return "bg-primary";
+    } else if (item === "Closed") {
+      return "bg-secondary";
+    }
+  };
   render() {
     return (
       <div className="container">
@@ -47,7 +62,7 @@ class App extends Component {
           Open a New Issue
         </button>
         <ReNewIss show={this.state.isOpen} handleSubmit={this.handleSubmit} />
-        <Grid issues={this.state.issues} />
+        <Grid issues={this.state.issues} getBackground={this.getBackground} />
       </div>
     );
   }
