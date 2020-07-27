@@ -19,7 +19,7 @@ class App extends Component {
         severity: "High",
         assigned: "name",
         status: "Fixed",
-        desc: ".............",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         due: "Never",
         ts: "timestamp ",
       },

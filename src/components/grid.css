@@ -11,6 +11,7 @@
 }
 .col-2 {
   border: 1px solid white;
+  text-align: center;
 }
 .getBackground {
   padding: 2px;
