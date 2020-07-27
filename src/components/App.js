@@ -10,18 +10,45 @@ class App extends Component {
         severity: "High",
         assigned: "name",
         status: "Closed",
-        desc: "News API only works in development mode",
+        desc: "News API only works in development mode.",
         due: "Yesterday",
         ts: "Last week ",
       },
       {
-        id: "123456",
+        id: "f55e72",
         severity: "High",
         assigned: "name",
-        status: "Fixed",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        status: "Open",
+        desc: "Lorem ipsum dolor sit amet.",
         due: "Never",
         ts: "timestamp ",
+      },
+      {
+        id: "39b0af",
+        severity: "Low",
+        assigned: "name",
+        status: "Fixed",
+        desc: "Consectetur adipisicing elit.",
+        due: "Not Set",
+        ts: "10:13:00 AM ",
+      },
+      {
+        id: "61447c",
+        severity: "Low",
+        assigned: "name",
+        status: "Fixed",
+        desc: "Facilis impedit quo nobis soluta obcaecati.",
+        due: "Not Set",
+        ts: "8:53:00 AM ",
+      },
+      {
+        id: "d1630e",
+        severity: "Medium",
+        assigned: "name",
+        status: "Closed",
+        desc: "Magni exercitationem error.",
+        due: "Not Set",
+        ts: "12:52:59 PM ",
       },
     ],
     isOpen: false,
@@ -55,7 +82,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h3>
+        <h3 className="m-4">
           <strong>React Issue Tracker</strong>
         </h3>
         <button

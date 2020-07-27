@@ -16,14 +16,19 @@ const Grid = ({ issues, getBackground }) => (
     {issues.map((issue) => (
       <div key={uuid()} className="row">
         <div className="col">
-          <div className="getBackground">
-            <div className={getBackground(issue.status)}>{issue.status}</div>
+          <div className="status">
+            <div
+              onClick={() => console.log("clicked")}
+              className={getBackground(issue.status)}
+            >
+              {issue.status}
+            </div>
           </div>
         </div>
         <div className="col">{issue.id}</div>
         <div className="col-4">{issue.desc}</div>
         <div className="col-2">
-          <div className="getBackground">
+          <div className="status">
             <div className={getBackground(issue.severity)}>
               {issue.severity}
             </div>

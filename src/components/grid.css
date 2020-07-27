@@ -13,9 +13,10 @@
   border: 1px solid white;
   text-align: center;
 }
-.getBackground {
+.status {
   padding: 2px;
   font-size: small;
   font-weight: bolder;
   text-align: center;
+  cursor: pointer;
 }
