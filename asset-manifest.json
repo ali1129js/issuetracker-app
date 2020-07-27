@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/issuetracker-app/static/css/main.cfdd894e.chunk.css",
+    "main.js": "/issuetracker-app/static/js/main.ce94c936.chunk.js",
+    "main.js.map": "/issuetracker-app/static/js/main.ce94c936.chunk.js.map",
+    "runtime-main.js": "/issuetracker-app/static/js/runtime-main.a5b6f6f1.js",
+    "runtime-main.js.map": "/issuetracker-app/static/js/runtime-main.a5b6f6f1.js.map",
+    "static/js/2.8a27eeb0.chunk.js": "/issuetracker-app/static/js/2.8a27eeb0.chunk.js",
+    "static/js/2.8a27eeb0.chunk.js.map": "/issuetracker-app/static/js/2.8a27eeb0.chunk.js.map",
+    "index.html": "/issuetracker-app/index.html",
+    "precache-manifest.d913c05caf72eb71a585c64a2e0f4311.js": "/issuetracker-app/precache-manifest.d913c05caf72eb71a585c64a2e0f4311.js",
+    "service-worker.js": "/issuetracker-app/service-worker.js",
+    "static/css/main.cfdd894e.chunk.css.map": "/issuetracker-app/static/css/main.cfdd894e.chunk.css.map",
+    "static/js/2.8a27eeb0.chunk.js.LICENSE.txt": "/issuetracker-app/static/js/2.8a27eeb0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a5b6f6f1.js",
+    "static/js/2.8a27eeb0.chunk.js",
+    "static/css/main.cfdd894e.chunk.css",
+    "static/js/main.ce94c936.chunk.js"
+  ]
+}
