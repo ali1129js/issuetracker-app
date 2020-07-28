@@ -79,6 +79,11 @@ class App extends Component {
       return "bg-secondary";
     }
   };
+  changeStatus = (i) => {
+    const newArr = [...this.state.issues];
+    newArr[i].status = "Closed";
+    this.setState({ issues: newArr });
+  };
   render() {
     return (
       <div className="container">
@@ -96,7 +101,11 @@ class App extends Component {
           handleSubmit={this.handleSubmit}
           handleToggle={this.handleToggle}
         />
-        <Grid issues={this.state.issues} getBackground={this.getBackground} />
+        <Grid
+          issues={this.state.issues}
+          getBackground={this.getBackground}
+          changeStatus={this.changeStatus}
+        />
       </div>
     );
   }
