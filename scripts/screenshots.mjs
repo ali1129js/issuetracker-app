@@ -11,18 +11,22 @@ const browser = await chromium.launch({
   args: ["--no-sandbox", "--disable-dev-shm-usage"],
 });
 
-async function shot(name, { theme, width, height }) {
+async function shot(name, { theme, motion = "static", width, height, colorScheme }) {
   const context = await browser.newContext({
     viewport: { width, height },
-    colorScheme: theme,
-    reducedMotion: "reduce",
+    colorScheme,
+    reducedMotion: motion === "animated" ? "no-preference" : "reduce",
     locale: "en-GB",
   });
   const page = await context.newPage();
   page.on("pageerror", (e) => console.error("PAGE ERROR", e.message));
-  await page.addInitScript((t) => {
-    localStorage.setItem("issuetracker.v1.theme", JSON.stringify(t));
-  }, theme);
+  await page.addInitScript(
+    ([t, m]) => {
+      localStorage.setItem("issuetracker.v1.theme", JSON.stringify(t));
+      localStorage.setItem("issuetracker.v1.motion", JSON.stringify(m));
+    },
+    [theme, motion],
+  );
   await page.goto(url, { waitUntil: "networkidle" });
   await page.waitForSelector(".issue");
   await page.waitForTimeout(300);
@@ -36,11 +40,23 @@ async function shot(name, { theme, width, height }) {
   return overflowX;
 }
 
+const scheme = (theme) => (theme === "khaki" ? "light" : "dark");
+
 const overflows = [];
 for (const [name, opts] of [
-  ["desktop-light-1280.png", { theme: "light", width: 1280, height: 900 }],
-  ["desktop-dark-1280.png", { theme: "dark", width: 1280, height: 900 }],
-  ["phone-light-390.png", { theme: "light", width: 390, height: 844 }],
+  ["desktop-khaki-1280.png", { theme: "khaki", width: 1280, height: 900, colorScheme: "light" }],
+  [
+    "desktop-darkgrey-1280.png",
+    { theme: "darkgrey", width: 1280, height: 900, colorScheme: "dark" },
+  ],
+  [
+    "desktop-midnight-1280.png",
+    { theme: "midnight", width: 1280, height: 900, colorScheme: "dark" },
+  ],
+  [
+    "desktop-khaki-1280-animated.png",
+    { theme: "khaki", motion: "animated", width: 1280, height: 900, colorScheme: "light" },
+  ],
 ]) {
   if (await shot(name, opts)) overflows.push(name);
 }

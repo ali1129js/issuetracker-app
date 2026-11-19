@@ -13,7 +13,9 @@ describe("App", () => {
     renderApp();
     expect(screen.getByRole("heading", { name: "Issue Tracker" })).toBeInTheDocument();
     expect(screen.getByText("2 open · 1 in progress · 2 done")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Login form accepts a blank password" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Login form accepts a blank password" }),
+    ).toBeInTheDocument();
     expect(screen.getAllByText("Example")).toHaveLength(5);
   });
 
@@ -46,14 +48,20 @@ describe("App", () => {
     renderApp();
     await user.selectOptions(screen.getByLabelText("Status"), "done");
     expect(screen.getByText("Showing 2 of 5 issues")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Profile page heading has a typo" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Profile page heading has a typo" }),
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "Login form accepts a blank password" }),
     ).not.toBeInTheDocument();
 
     await user.type(screen.getByPlaceholderText("Search title or description"), "theme");
-    expect(screen.getByRole("heading", { name: "Dark theme flashes white on the first load" })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "Profile page heading has a typo" })).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Dark theme flashes white on the first load" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Profile page heading has a typo" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("Showing 1 of 5 issues")).toBeInTheDocument();
   });
 
@@ -90,7 +98,9 @@ describe("App", () => {
     expect(screen.getByRole("dialog", { name: "Delete this issue?" })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Cancel" }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "CSV export drops the last row" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "CSV export drops the last row" }),
+    ).toBeInTheDocument();
   });
 
   it("deletes an issue after confirmation and persists the remaining list", async () => {
@@ -99,11 +109,15 @@ describe("App", () => {
     const article = screen.getByRole("article", { name: "CSV export drops the last row" });
     await user.click(within(article).getByRole("button", { name: "Delete" }));
     await user.click(screen.getByRole("button", { name: "Delete issue" }));
-    expect(screen.queryByRole("heading", { name: "CSV export drops the last row" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "CSV export drops the last row" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("Showing 4 of 4 issues")).toBeInTheDocument();
     unmount();
     renderApp();
-    expect(screen.queryByRole("heading", { name: "CSV export drops the last row" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "CSV export drops the last row" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("Showing 4 of 4 issues")).toBeInTheDocument();
   });
 
@@ -129,8 +143,22 @@ describe("App", () => {
   it("switches theme and stores the choice", async () => {
     const user = userEvent.setup();
     renderApp();
-    await user.click(screen.getByRole("button", { name: "Dark" }));
-    expect(document.documentElement.dataset.theme).toBe("dark");
-    expect(localStorage.getItem(KEYS.theme)).toBe(JSON.stringify("dark"));
+    await user.click(screen.getByRole("button", { name: "Dark grey" }));
+    expect(document.documentElement.dataset.theme).toBe("darkgrey");
+    expect(localStorage.getItem(KEYS.theme)).toBe(JSON.stringify("darkgrey"));
+  });
+
+  it("keeps background motion static by default and persists a change", async () => {
+    const user = userEvent.setup();
+    renderApp();
+    const toggle = screen.getByRole("button", { name: "Animated background" });
+    expect(toggle).toHaveAttribute("aria-pressed", "false");
+    expect(document.documentElement.dataset.motion).toBe("static");
+    expect(localStorage.getItem(KEYS.motion)).toBeNull();
+
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute("aria-pressed", "true");
+    expect(document.documentElement.dataset.motion).toBe("animated");
+    expect(localStorage.getItem(KEYS.motion)).toBe(JSON.stringify("animated"));
   });
 });

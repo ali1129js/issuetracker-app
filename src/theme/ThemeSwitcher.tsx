@@ -9,7 +9,7 @@ interface Props {
 
 export function ThemeSwitcher({ value, onChange }: Props) {
   return (
-    <div role="group" aria-label="Theme" className="segmented">
+    <div role="group" aria-label="Theme" className="segmented wrap">
       {THEME_NAMES.map((name) => (
         <button
           key={name}

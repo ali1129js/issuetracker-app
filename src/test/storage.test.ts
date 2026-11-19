@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { EXAMPLE_ISSUES } from "../lib/issues";
-import { KEYS, preferredTheme, readIssues, readStored, themeSchema, writeIssues } from "../lib/storage";
+import {
+  KEYS,
+  preferredTheme,
+  readIssues,
+  readStored,
+  themeSchema,
+  writeIssues,
+} from "../lib/storage";
 
 describe("readIssues", () => {
   it("seeds examples when storage is empty", () => {
@@ -38,17 +45,24 @@ describe("readIssues", () => {
 
 describe("readStored", () => {
   it("returns the fallback for a missing or invalid theme", () => {
-    expect(readStored(KEYS.theme, themeSchema, "light")).toBe("light");
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("khaki");
     localStorage.setItem(KEYS.theme, JSON.stringify("neon"));
-    expect(readStored(KEYS.theme, themeSchema, "light")).toBe("light");
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("khaki");
+    localStorage.setItem(KEYS.theme, JSON.stringify("midnight"));
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("midnight");
+  });
+
+  it("maps the old light and dark values onto gloss themes", () => {
+    localStorage.setItem(KEYS.theme, JSON.stringify("light"));
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("khaki");
     localStorage.setItem(KEYS.theme, JSON.stringify("dark"));
-    expect(readStored(KEYS.theme, themeSchema, "light")).toBe("dark");
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("darkgrey");
   });
 });
 
 describe("preferredTheme", () => {
   it("follows the operating system", () => {
-    expect(preferredTheme((query) => ({ matches: query.includes("dark") }))).toBe("dark");
-    expect(preferredTheme(() => ({ matches: false }))).toBe("light");
+    expect(preferredTheme((query) => ({ matches: query.includes("dark") }))).toBe("darkgrey");
+    expect(preferredTheme(() => ({ matches: false }))).toBe("khaki");
   });
 });

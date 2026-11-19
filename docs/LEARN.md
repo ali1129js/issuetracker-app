@@ -30,9 +30,9 @@ See `src/components/IssueForm.tsx` and `createIssue` in `src/lib/issues.ts`.
 
 ## Theme tokens as CSS variables
 
-Colours are defined once in TypeScript, applied as CSS variables, and checked in a test against WCAG contrast ratios. If a colour change fails the test, it is caught before it ships. The page has two themes, light and dark, and no third ad-hoc palette hidden in the CSS.
+Colour tokens live in `src/styles/gloss.css` and are mirrored in TypeScript so a test can check WCAG contrast ratios. If a colour change fails the test, it is caught before it ships. The page has three gloss themes — Khaki, Dark grey and Midnight — plus an optional animated background that stays still when `prefers-reduced-motion` is set.
 
-See `src/theme/themes.ts` and `src/test/theme.test.ts`.
+See `src/styles/gloss.css`, `src/theme/themes.ts` and `src/test/theme.test.ts`.
 
 ## Why the original `start`/`render` pattern is gone
 

@@ -1,14 +1,20 @@
 import { z } from "zod";
 import { cloneExamples } from "./issues";
 import type { Issue, ThemeName } from "./types";
-import { PRIORITIES, STATUSES, THEME_NAMES } from "./types";
+import { LEGACY_THEMES, MOTION_NAMES, PRIORITIES, STATUSES, THEME_NAMES } from "./types";
 
 export const KEYS = {
   issues: "issuetracker.v1.issues",
   theme: "issuetracker.v1.theme",
+  motion: "issuetracker.v1.motion",
 } as const;
 
-export const themeSchema = z.enum(THEME_NAMES);
+export const motionSchema = z.enum(MOTION_NAMES);
+
+export const themeSchema = z.preprocess(
+  (value) => (typeof value === "string" && value in LEGACY_THEMES ? LEGACY_THEMES[value] : value),
+  z.enum(THEME_NAMES),
+);
 
 const issueSchema = z.object({
   id: z.string().min(1),
@@ -66,5 +72,5 @@ export function writeIssues(issues: readonly Issue[]): void {
 export function preferredTheme(
   match: (query: string) => { matches: boolean } = (query) => window.matchMedia(query),
 ): ThemeName {
-  return match("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return match("(prefers-color-scheme: dark)").matches ? "darkgrey" : "khaki";
 }

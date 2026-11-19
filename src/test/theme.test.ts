@@ -1,37 +1,45 @@
 import { describe, expect, it } from "vitest";
-import { THEMES, contrastRatio } from "../theme/themes";
+import { GLOSS, THEMES, contrastMeets } from "../theme/themes";
 import type { ThemeTokens } from "../theme/themes";
-import type { ThemeName } from "../lib/types";
+import { THEME_NAMES, type ThemeName } from "../lib/types";
 
-const pairs: Array<[ThemeName, keyof ThemeTokens, keyof ThemeTokens, number]> = [
-  ["light", "bg", "text", 4.5],
-  ["light", "surface", "text", 4.5],
-  ["light", "surface", "textMuted", 4.5],
-  ["light", "accent", "onAccent", 4.5],
-  ["light", "danger", "onDanger", 4.5],
-  ["light", "exampleBg", "exampleText", 4.5],
-  ["light", "bg", "open", 4.5],
-  ["light", "bg", "progress", 4.5],
-  ["light", "bg", "done", 4.5],
-  ["light", "bg", "high", 4.5],
-  ["light", "bg", "border", 3],
-  ["light", "bg", "focus", 3],
-  ["dark", "bg", "text", 4.5],
-  ["dark", "surface", "text", 4.5],
-  ["dark", "surface", "textMuted", 4.5],
-  ["dark", "accent", "onAccent", 4.5],
-  ["dark", "danger", "onDanger", 4.5],
-  ["dark", "exampleBg", "exampleText", 4.5],
-  ["dark", "bg", "open", 4.5],
-  ["dark", "bg", "progress", 4.5],
-  ["dark", "bg", "done", 4.5],
-  ["dark", "bg", "high", 4.5],
-  ["dark", "bg", "border", 3],
-  ["dark", "bg", "focus", 3],
+const textPairs: Array<[keyof ThemeTokens, keyof ThemeTokens, number]> = [
+  ["bg", "text", 4.5],
+  ["surface", "text", 4.5],
+  ["surface", "textMuted", 4.5],
+  ["accent", "onAccent", 4.5],
+  ["danger", "onDanger", 4.5],
+  ["exampleBg", "exampleText", 4.5],
+  ["surface", "dangerText", 4.5],
+  ["bg", "border", 3],
+  ["bg", "focus", 3],
+];
+
+const fillPairs: Array<[string, string, number]> = [
+  [GLOSS.cobalt, GLOSS.onCobalt, 4.5],
+  [GLOSS.pewter, GLOSS.onPewter, 4.5],
+  [GLOSS.jade, GLOSS.onJade, 4.5],
+  [GLOSS.garnet, GLOSS.onGarnet, 4.5],
+  [GLOSS.saffron, GLOSS.onSaffron, 4.5],
+  [GLOSS.lagoon, GLOSS.onLagoon, 4.5],
 ];
 
 describe("theme contrast", () => {
-  it.each(pairs)("%s %s against %s is at least %s:1", (theme, a, b, min) => {
-    expect(contrastRatio(THEMES[theme][a], THEMES[theme][b])).toBeGreaterThanOrEqual(min);
+  it.each(THEME_NAMES.flatMap((theme) => textPairs.map((pair) => [theme, ...pair])))(
+    "%s %s against %s is at least %s:1",
+    (theme, a, b, min) => {
+      const tokens = THEMES[theme as ThemeName];
+      expect(
+        contrastMeets(
+          tokens[a as keyof ThemeTokens],
+          tokens[b as keyof ThemeTokens],
+          min as number,
+        ),
+      ).toBe(true);
+    },
+  );
+
+  it.each(fillPairs)("gloss fill %s against %s is at least %s:1", (bg, fg, min) => {
+    expect(contrastMeets(bg, fg, min)).toBe(true);
   });
 });

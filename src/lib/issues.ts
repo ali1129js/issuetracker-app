@@ -63,10 +63,7 @@ export function newId(random: () => string = () => crypto.randomUUID()): string 
   return random();
 }
 
-export function createIssue(
-  draft: IssueDraft,
-  options: { now?: Date; id?: string } = {},
-): Issue {
+export function createIssue(draft: IssueDraft, options: { now?: Date; id?: string } = {}): Issue {
   const title = draft.title.trim();
   if (title.length === 0) {
     throw new Error("Title is required");
@@ -132,7 +129,9 @@ export function sortIssues(issues: readonly Issue[]): Issue[] {
   });
 }
 
-export function countByStatus(issues: readonly Issue[]): Record<"open" | "in-progress" | "done", number> {
+export function countByStatus(
+  issues: readonly Issue[],
+): Record<"open" | "in-progress" | "done", number> {
   const counts = { open: 0, "in-progress": 0, done: 0 };
   for (const issue of issues) {
     counts[issue.status] += 1;

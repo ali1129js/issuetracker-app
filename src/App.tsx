@@ -14,22 +14,36 @@ import {
   sortIssues,
   updateIssue,
 } from "./lib/issues";
-import { KEYS, preferredTheme, readIssues, themeSchema, writeIssues } from "./lib/storage";
-import type { Issue, IssueDraft, IssueFilters, ThemeName } from "./lib/types";
+import {
+  KEYS,
+  motionSchema,
+  preferredTheme,
+  readIssues,
+  themeSchema,
+  writeIssues,
+} from "./lib/storage";
+import type { Issue, IssueDraft, IssueFilters, MotionName, ThemeName } from "./lib/types";
 import { EMPTY_DRAFT, EMPTY_FILTERS } from "./lib/types";
+import { MotionToggle } from "./theme/MotionToggle";
 import { ThemeSwitcher } from "./theme/ThemeSwitcher";
-import { applyTheme } from "./theme/themes";
+import { applyMotion, applyTheme, prefersReducedMotion } from "./theme/themes";
 
 type FormMode = { kind: "closed" } | { kind: "create" } | { kind: "edit"; issue: Issue };
 
 export function App() {
   const [theme, setTheme] = useStoredState<ThemeName>(KEYS.theme, themeSchema, preferredTheme());
+  const [motion, setMotion] = useStoredState<MotionName>(KEYS.motion, motionSchema, "static");
+  const reducedMotion = prefersReducedMotion();
   const [issues, setIssues] = useState<Issue[]>(() => readIssues());
   const [filters, setFilters] = useState<IssueFilters>(EMPTY_FILTERS);
   const [form, setForm] = useState<FormMode>({ kind: "closed" });
   const [pendingDelete, setPendingDelete] = useState<Issue | null>(null);
 
   useEffect(() => applyTheme(theme), [theme]);
+  useEffect(
+    () => applyMotion(motion, document.documentElement, reducedMotion),
+    [motion, reducedMotion],
+  );
 
   function commit(next: Issue[]) {
     setIssues(next);
@@ -38,7 +52,9 @@ export function App() {
 
   function handleSubmit(draft: IssueDraft) {
     if (form.kind === "edit") {
-      commit(issues.map((issue) => (issue.id === form.issue.id ? updateIssue(issue, draft) : issue)));
+      commit(
+        issues.map((issue) => (issue.id === form.issue.id ? updateIssue(issue, draft) : issue)),
+      );
     } else {
       commit([...issues, createIssue(draft)]);
     }
@@ -74,7 +90,10 @@ export function App() {
             {counts.open} open · {counts["in-progress"]} in progress · {counts.done} done
           </p>
         </div>
-        <ThemeSwitcher value={theme} onChange={setTheme} />
+        <div className="theme-tools">
+          <ThemeSwitcher value={theme} onChange={setTheme} />
+          <MotionToggle value={motion} onChange={setMotion} reducedMotion={reducedMotion} />
+        </div>
       </header>
 
       <main id="main" tabIndex={-1} className="app-main">
@@ -116,7 +135,11 @@ export function App() {
             <p className="result-count" aria-live="polite">
               Showing {visible.length} of {issues.length} issue{issues.length === 1 ? "" : "s"}
             </p>
-            <IssueList issues={visible} onEdit={(issue) => setForm({ kind: "edit", issue })} onAskDelete={setPendingDelete} />
+            <IssueList
+              issues={visible}
+              onEdit={(issue) => setForm({ kind: "edit", issue })}
+              onAskDelete={setPendingDelete}
+            />
           </>
         )}
       </main>

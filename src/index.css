@@ -1,3 +1,5 @@
+@import "./styles/gloss.css";
+
 *,
 *::before,
 *::after {
@@ -10,8 +12,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg, #eef1f7);
-  color: var(--text, #151a26);
+  background: var(--bg, #d8cdae);
+  color: var(--text, #2a2418);
   font-family:
     system-ui,
     -apple-system,
@@ -58,9 +60,9 @@ textarea {
   top: -4rem;
   z-index: 10;
   padding: 0.5rem 0.75rem;
-  background: var(--accent);
-  color: var(--on-accent);
   border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 700;
 }
 .skip-link:focus {
   top: 0.5rem;
@@ -119,8 +121,6 @@ textarea {
   border-left: 0;
 }
 .segment[aria-pressed="true"] {
-  background: var(--accent);
-  color: var(--on-accent);
   font-weight: 700;
 }
 .segment:focus-visible {
@@ -136,20 +136,14 @@ textarea {
   cursor: pointer;
 }
 .button-primary {
-  background: var(--accent);
-  color: var(--on-accent);
-  border-color: var(--accent);
   font-weight: 700;
 }
 .button-danger {
-  background: var(--danger);
-  color: var(--on-danger);
-  border-color: var(--danger);
   font-weight: 700;
 }
 .button-danger-ghost {
-  color: var(--danger);
-  border-color: var(--danger);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
 }
 .button-small {
   min-height: 2.15rem;
@@ -191,7 +185,6 @@ textarea {
 }
 
 .card {
-  background: var(--surface);
   border: 2px solid var(--border);
   border-radius: 0.85rem;
   padding: 1rem 1.1rem;
@@ -221,7 +214,7 @@ textarea {
 }
 .form-error {
   margin: -0.4rem 0 0;
-  color: var(--danger);
+  color: var(--danger-text);
   font-weight: 600;
 }
 .form-actions {
@@ -269,25 +262,7 @@ textarea {
   font-weight: 700;
   border: 1.5px solid currentColor;
 }
-.badge-example {
-  background: var(--example-bg);
-  color: var(--example-text);
-  border-color: var(--example-text);
-}
-.badge-open,
-.badge-low {
-  color: var(--open);
-}
-.badge-in-progress,
-.badge-medium {
-  color: var(--progress);
-}
-.badge-done {
-  color: var(--done);
-}
-.badge-high {
-  color: var(--high);
-}
+/* Filled glossy badge colours live in styles/gloss.css. */
 .issue-desc {
   margin: 0.55rem 0 0;
   overflow-wrap: anywhere;
@@ -331,7 +306,6 @@ textarea {
 }
 .dialog {
   width: min(28rem, 100%);
-  background: var(--surface);
   color: var(--text);
   border: 2px solid var(--border);
   border-radius: 0.9rem;

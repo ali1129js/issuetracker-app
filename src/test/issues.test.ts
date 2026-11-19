@@ -100,10 +100,30 @@ describe("filterIssues", () => {
 describe("sortIssues", () => {
   it("orders open, then in progress, then done, and newest first within a status", () => {
     const mixed: Issue[] = [
-      { ...cloneExamples()[0]!, id: "old-open", status: "open", createdAt: "2026-01-01T00:00:00.000Z" },
-      { ...cloneExamples()[0]!, id: "new-done", status: "done", createdAt: "2026-06-01T00:00:00.000Z" },
-      { ...cloneExamples()[0]!, id: "new-open", status: "open", createdAt: "2026-05-01T00:00:00.000Z" },
-      { ...cloneExamples()[0]!, id: "progress", status: "in-progress", createdAt: "2026-04-01T00:00:00.000Z" },
+      {
+        ...cloneExamples()[0]!,
+        id: "old-open",
+        status: "open",
+        createdAt: "2026-01-01T00:00:00.000Z",
+      },
+      {
+        ...cloneExamples()[0]!,
+        id: "new-done",
+        status: "done",
+        createdAt: "2026-06-01T00:00:00.000Z",
+      },
+      {
+        ...cloneExamples()[0]!,
+        id: "new-open",
+        status: "open",
+        createdAt: "2026-05-01T00:00:00.000Z",
+      },
+      {
+        ...cloneExamples()[0]!,
+        id: "progress",
+        status: "in-progress",
+        createdAt: "2026-04-01T00:00:00.000Z",
+      },
     ];
     expect(sortIssues(mixed).map((issue) => issue.id)).toEqual([
       "new-open",

@@ -16,8 +16,16 @@ export const PRIORITY_LABELS: Readonly<Record<Priority, string>> = {
   low: "Low",
 };
 
-export const THEME_NAMES = ["light", "dark"] as const;
+export const THEME_NAMES = ["khaki", "darkgrey", "midnight"] as const;
 export type ThemeName = (typeof THEME_NAMES)[number];
+
+export const LEGACY_THEMES: Readonly<Record<string, ThemeName>> = {
+  light: "khaki",
+  dark: "darkgrey",
+};
+
+export const MOTION_NAMES = ["static", "animated"] as const;
+export type MotionName = (typeof MOTION_NAMES)[number];
 
 export interface Issue {
   id: string;
