@@ -1,0 +1,342 @@
+@import "./styles/gloss.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg, #d8cdae);
+  color: var(--text, #2a2418);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+.app {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.app-title {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: 0.01em;
+}
+.app-sub {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.app-main:focus {
+  outline: none;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 2px solid var(--control-border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.segmented.wrap {
+  flex-wrap: wrap;
+  border-radius: 0.75rem;
+}
+.segment {
+  min-height: 2.5rem;
+  padding: 0.25rem 0.9rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.segment + .segment {
+  border-left: 2px solid var(--control-border);
+}
+.segmented.wrap .segment + .segment {
+  border-left: 0;
+}
+.segment[aria-pressed="true"] {
+  font-weight: 700;
+}
+.segment:focus-visible {
+  outline-offset: -3px;
+}
+
+.button {
+  min-height: 2.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid var(--control-border);
+  border-radius: 0.6rem;
+  background: var(--surface);
+  cursor: pointer;
+}
+.button-primary {
+  font-weight: 700;
+}
+.button-danger {
+  font-weight: 700;
+}
+.button-danger-ghost {
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+.button-small {
+  min-height: 2.15rem;
+  padding: 0.2rem 0.7rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+.search {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+.search input,
+.select-field select,
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.7rem;
+  border: 2px solid var(--control-border);
+  border-radius: 0.6rem;
+  background: var(--surface);
+}
+.select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.select-field select {
+  min-width: 9rem;
+  color: var(--text);
+}
+
+.card {
+  border: 2px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 1rem 1.1rem;
+}
+
+.form {
+  margin-bottom: 1.25rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.form-heading {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.field {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.field > span,
+.field legend {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 0;
+}
+.form-error {
+  margin: -0.4rem 0 0;
+  color: var(--danger-text);
+  font-weight: 600;
+}
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.result-count {
+  margin: 0 0 0.7rem;
+  color: var(--text-muted);
+}
+
+.issue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.issue-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.issue-title {
+  margin: 0;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+  flex: 1 1 12rem;
+}
+.issue-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1.5px solid currentColor;
+}
+/* Filled glossy badge colours live in styles/gloss.css. */
+.issue-desc {
+  margin: 0.55rem 0 0;
+  overflow-wrap: anywhere;
+}
+.issue-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.issue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.empty {
+  text-align: left;
+}
+.empty-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+}
+.empty-body {
+  margin: 0 0 0.9rem;
+  color: var(--text-muted);
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.45);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  z-index: 20;
+}
+.dialog {
+  width: min(28rem, 100%);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 1.1rem 1.15rem 1rem;
+}
+.dialog-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+}
+.dialog-body {
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+}
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+@media (max-width: 430px) {
+  .app {
+    padding: 0.75rem 0.75rem 2rem;
+  }
+  .app-title {
+    font-size: 1.45rem;
+  }
+  .select-field,
+  .select-field select,
+  .search,
+  .toolbar > .button {
+    width: 100%;
+  }
+}
