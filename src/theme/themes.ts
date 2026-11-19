@@ -6,6 +6,7 @@ export interface ThemeTokens {
   text: string;
   textMuted: string;
   border: string;
+  controlBorder: string;
   accent: string;
   onAccent: string;
   focus: string;
@@ -51,6 +52,7 @@ export const THEMES: Readonly<Record<ThemeName, ThemeTokens>> = {
     text: "#2A2418",
     textMuted: "#554C3E",
     border: "#6F6550",
+    controlBorder: "#6F6550",
     accent: GLOSS.cobalt,
     onAccent: GLOSS.onCobalt,
     focus: "#214BB3",
@@ -66,6 +68,7 @@ export const THEMES: Readonly<Record<ThemeName, ThemeTokens>> = {
     text: "#E8ECF1",
     textMuted: "#A7B0BC",
     border: "#3A4350",
+    controlBorder: "#707A8A",
     accent: GLOSS.cobalt,
     onAccent: GLOSS.onCobalt,
     focus: "#8DAEFF",
@@ -81,6 +84,7 @@ export const THEMES: Readonly<Record<ThemeName, ThemeTokens>> = {
     text: "#EDE7F6",
     textMuted: "#C9C2D6",
     border: "#7A7288",
+    controlBorder: "#7A7288",
     accent: GLOSS.cobalt,
     onAccent: GLOSS.onCobalt,
     focus: "#789FFF",
