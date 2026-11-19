@@ -34,3 +34,7 @@ npm run preview
 See [docs/LEARN.md](docs/LEARN.md) for a short walk-through of the ideas used in the code.
 
 The 2020 screenshot is kept at [docs/original-screenshot.png](docs/original-screenshot.png).
+
+## Deploying
+
+`.github/workflows/deploy.yml` runs lint, typecheck, tests and build on every push and pull request, and deploys `dist/` to GitHub Pages when `main` or `master` changes (Pages source: GitHub Actions).
