@@ -72,5 +72,5 @@ export function writeIssues(issues: readonly Issue[]): void {
 export function preferredTheme(
   match: (query: string) => { matches: boolean } = (query) => window.matchMedia(query),
 ): ThemeName {
-  return match("(prefers-color-scheme: dark)").matches ? "darkgrey" : "khaki";
+  return match("(prefers-color-scheme: dark)").matches ? "graphite" : "khaki";
 }

@@ -6,30 +6,18 @@ interface Props {
   reducedMotion: boolean;
 }
 
-function WavesIcon() {
+function MotionIcon({ pressed }: { pressed: boolean }) {
+  if (pressed) {
+    return (
+      <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
+        <rect x="4.5" y="4" width="4" height="12" rx="1.2" fill="currentColor" />
+        <rect x="11.5" y="4" width="4" height="12" rx="1.2" fill="currentColor" />
+      </svg>
+    );
+  }
   return (
     <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
-      <path
-        d="M3 6.5c2-2 4 2 6 0s4 2 6 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-      <path
-        d="M3 10.5c2-2 4 2 6 0s4 2 6 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-      <path
-        d="M3 14.5c2-2 4 2 6 0s4 2 6 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
+      <path d="M6 4.2v11.6L16.2 10 6 4.2z" fill="currentColor" />
     </svg>
   );
 }
@@ -48,7 +36,7 @@ export function MotionToggle({ value, onChange, reducedMotion }: Props) {
       disabled={reducedMotion}
       onClick={() => onChange(pressed ? "static" : "animated")}
     >
-      <WavesIcon />
+      <MotionIcon pressed={pressed} />
     </button>
   );
 }

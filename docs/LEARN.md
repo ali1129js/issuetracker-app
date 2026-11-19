@@ -30,7 +30,7 @@ See `src/components/IssueForm.tsx` and `createIssue` in `src/lib/issues.ts`.
 
 ## Theme tokens as CSS variables
 
-Colour tokens live in `src/styles/gloss.css` and are mirrored in TypeScript so a test can check WCAG contrast ratios. If a colour change fails the test, it is caught before it ships. The page has three gloss themes — Khaki, Dark grey and Midnight — plus an optional animated background that stays still when `prefers-reduced-motion` is set.
+Colour tokens live in `src/styles/gloss.css` and are mirrored in TypeScript so a test can check WCAG contrast ratios. If a colour change fails the test, it is caught before it ships. The page has three gloss themes — Khaki, Graphite and Midnight — plus an optional animated background that stays still when `prefers-reduced-motion` is set.
 
 See `src/styles/gloss.css`, `src/theme/themes.ts` and `src/test/theme.test.ts`.
 

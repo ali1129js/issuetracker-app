@@ -75,15 +75,16 @@
     0 8px 18px -6px rgb(42 36 24 / 0.28);
 }
 
+[data-theme="graphite"],
 [data-theme="darkgrey"] {
   color-scheme: dark;
-  --bg: #2a2c30;
-  --surface: #3a3d43;
-  --surface-from: #44484f;
-  --surface-to: #32353a;
-  --text: #e6e6e6;
-  --text-muted: #c5c8ce;
-  --border: #8a8e96;
+  --bg: #1e2329;
+  --surface: #2a313a;
+  --surface-from: #323a44;
+  --surface-to: #242b33;
+  --text: #e8ecf1;
+  --text-muted: #a7b0bc;
+  --border: #3a4350;
   --accent: var(--cobalt);
   --on-accent: var(--on-cobalt);
   --focus: #8daeff;
@@ -124,6 +125,7 @@
 /* Aliases used by Issue Tracker component CSS. */
 :root,
 [data-theme="khaki"],
+[data-theme="graphite"],
 [data-theme="darkgrey"],
 [data-theme="midnight"] {
   --example-bg: var(--lagoon);

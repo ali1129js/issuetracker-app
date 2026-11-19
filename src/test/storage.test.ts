@@ -52,17 +52,19 @@ describe("readStored", () => {
     expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("midnight");
   });
 
-  it("maps the old light and dark values onto gloss themes", () => {
+  it("maps the old light, dark and darkgrey values onto gloss themes", () => {
     localStorage.setItem(KEYS.theme, JSON.stringify("light"));
     expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("khaki");
     localStorage.setItem(KEYS.theme, JSON.stringify("dark"));
-    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("darkgrey");
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("graphite");
+    localStorage.setItem(KEYS.theme, JSON.stringify("darkgrey"));
+    expect(readStored(KEYS.theme, themeSchema, "khaki")).toBe("graphite");
   });
 });
 
 describe("preferredTheme", () => {
   it("follows the operating system", () => {
-    expect(preferredTheme((query) => ({ matches: query.includes("dark") }))).toBe("darkgrey");
+    expect(preferredTheme((query) => ({ matches: query.includes("dark") }))).toBe("graphite");
     expect(preferredTheme(() => ({ matches: false }))).toBe("khaki");
   });
 });

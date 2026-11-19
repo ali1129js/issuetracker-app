@@ -143,9 +143,9 @@ describe("App", () => {
   it("switches theme and stores the choice", async () => {
     const user = userEvent.setup();
     renderApp();
-    await user.click(screen.getByRole("button", { name: "Dark grey" }));
-    expect(document.documentElement.dataset.theme).toBe("darkgrey");
-    expect(localStorage.getItem(KEYS.theme)).toBe(JSON.stringify("darkgrey"));
+    await user.click(screen.getByRole("button", { name: "Graphite" }));
+    expect(document.documentElement.dataset.theme).toBe("graphite");
+    expect(localStorage.getItem(KEYS.theme)).toBe(JSON.stringify("graphite"));
   });
 
   it("keeps background motion static by default and persists a change", async () => {

@@ -16,12 +16,13 @@ export const PRIORITY_LABELS: Readonly<Record<Priority, string>> = {
   low: "Low",
 };
 
-export const THEME_NAMES = ["khaki", "darkgrey", "midnight"] as const;
+export const THEME_NAMES = ["khaki", "graphite", "midnight"] as const;
 export type ThemeName = (typeof THEME_NAMES)[number];
 
 export const LEGACY_THEMES: Readonly<Record<string, ThemeName>> = {
   light: "khaki",
-  dark: "darkgrey",
+  dark: "graphite",
+  darkgrey: "graphite",
 };
 
 export const MOTION_NAMES = ["static", "animated"] as const;

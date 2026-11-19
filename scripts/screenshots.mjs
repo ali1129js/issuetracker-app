@@ -46,8 +46,8 @@ const overflows = [];
 for (const [name, opts] of [
   ["desktop-khaki-1280.png", { theme: "khaki", width: 1280, height: 900, colorScheme: "light" }],
   [
-    "desktop-darkgrey-1280.png",
-    { theme: "darkgrey", width: 1280, height: 900, colorScheme: "dark" },
+    "desktop-graphite-1280.png",
+    { theme: "graphite", width: 1280, height: 900, colorScheme: "dark" },
   ],
   [
     "desktop-midnight-1280.png",
