@@ -1,5 +1,7 @@
 # Issue Tracker
 
+**Live demo: https://ali1129js.github.io/issuetracker-app/**
+
 Create, filter, edit and delete issues in the browser. Each issue has a title, a description, a status (Open, In Progress, Done), a priority and a created date. The list is saved in `localStorage`.
 
 Rebuilt in 2026 (original 2020, AI pair-programmed 2026). The 2020 version was a Create React App class component with Bootstrap, no search, no edit, no confirmed delete and no persistence. This version keeps the original idea and adds those pieces in React 19 and strict TypeScript.
@@ -14,6 +16,14 @@ Rebuilt in 2026 (original 2020, AI pair-programmed 2026). The 2020 version was a
 - Desktop first. At 390 px wide the layout stacks and does not scroll sideways.
 
 Everything stays on your machine. There is no server and no account.
+
+## Screenshots
+
+Desktop, 1280 px wide, one per theme.
+
+| Khaki | Graphite | Midnight |
+|---|---|---|
+| ![Khaki theme](docs/screenshots/desktop-khaki-1280.png) | ![Graphite theme](docs/screenshots/desktop-graphite-1280.png) | ![Midnight theme](docs/screenshots/desktop-midnight-1280.png) |
 
 ## Stack
 
@@ -33,7 +43,7 @@ npm run preview
 
 See [docs/LEARN.md](docs/LEARN.md) for a short walk-through of the ideas used in the code.
 
-The 2020 screenshot is kept at [docs/original-screenshot.png](docs/original-screenshot.png).
+The 2020 original (Create React App, Bootstrap) is kept for comparison at [docs/original-screenshot.png](docs/original-screenshot.png).
 
 ## Deploying
 
